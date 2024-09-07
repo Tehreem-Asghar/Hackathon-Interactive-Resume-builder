@@ -1,0 +1,205 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Container styling */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Header styling */
+header {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Profile picture and contact info container styling */
+#pro-pick {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#pro-pick img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+
+#pro-pick h1 {
+    margin: 10px 0;
+    font-size: 1.8em;
+}
+
+#pro-pick p {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+/* Contact information styling */
+#contact {
+    background: #444;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+}
+
+#contact h2 {
+    margin-top: 0;
+    font-size: 1.4em;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 5px;
+}
+
+#contact h4 {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+#contact p {
+    margin-top: 10px;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Section styling */
+section {
+    padding: 20px;
+    margin: 10px 0;
+    background: #ffffff; /* White background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effect */
+}
+
+section:hover {
+    background-color: #f9f9f9; /* Light grey background on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+}
+
+h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Project section styling */
+.project {
+    margin-bottom: 15px;
+}
+
+.project-title {
+    color: #070707; 
+    text-decoration: none;
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.project-title:hover {
+    text-decoration: underline;
+}
+
+.project-description {
+    margin: 10px 0;
+}
+
+/* List styling */
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Button styling */
+.button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #555;
+}
+
+/* Responsive styling */
+@media (min-width: 768px) {
+    header {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    #pro-pick {
+        margin-right: 20px;
+        text-align: left;
+    }
+
+    #pro-pick img {
+        width: 150px;
+        height: 150px;
+    }
+
+    #pro-pick h1 {
+        font-size: 2em;
+    }
+
+    #pro-pick p {
+        font-size: 1.2em;
+    }
+
+    #contact {
+        text-align: left;
+        width: auto;
+    }
+
+    #contact h2 {
+        font-size: 1.5em;
+    }
+
+    #contact h4 {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 767px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #contact {
+        margin-top: 20px;
+    }
+
+    #contact h2 {
+        font-size: 1.3em;
+    }
+
+    #contact h4 {
+        font-size: 0.9em;
+    }
+}
