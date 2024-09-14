@@ -245,3 +245,61 @@ form button {
         font-size: 0.9em;
     }
 }
+
+@media print {
+    #showFormBtn,
+    #editBtn,
+    #saveBtn,
+    #ileUploadf,
+    #footer,
+    #download-pdf,
+    #shareable-link {
+        display: none !important;
+    }
+
+    /* Remove shadows and other effects for printing */
+   
+    section, .form-container {
+        box-shadow: none;
+    }
+
+    /* Ensure background colors are printed */
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background-color: white; /* Default white for body */
+   }
+
+    /* Ensure header, contact, and other sections retain their background color */
+   header {
+        background-color: #333;
+        color: #fff;
+    }
+
+    #contact {
+        background-color: #444;
+    }
+
+    /* Ensure buttons are styled properly for print */
+    .button {
+        background-color: #444;
+        color: #fff;
+        border: none;
+    }
+
+    /* Prevent unwanted hover effects */
+    a:hover, .button:hover {
+        text-decoration: none;
+        background-color: #444;
+    }
+
+    /* Make sure layout and text appear correctly on print */
+    #pro-pick img {
+        border-color: #fff;
+    }
+    
+    /* Hide any unnecessary elements, like form inputs, if needed */
+    form {
+        display: none;
+    }
+} 

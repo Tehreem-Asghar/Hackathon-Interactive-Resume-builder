@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    var _a;
     // Toggle form visibility
     var toggleForm = function () {
         var formContainer = document.getElementById('resumeFormContainer');
@@ -74,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (elements.projectsList)
             elements.projectsList.innerHTML = data.projects.split('\n').map(function (project) {
                 var _a = project.split('|'), link = _a[0], description = _a[1];
-                return link && description ? "<div class=\"project\"><h3 class=\"project-title\"><a href=\"".concat(link.trim(), "\" target=\"_blank\">").concat(description.trim(), "</a></h3><p class=\"project-description\">").concat(description.trim(), "</p></div>") : '';
+                return link && description ? "<div class=\"project\"><h3 class=\"project-title\"><a href=\"".concat(link.trim(), "\" target=\"_blank\">").concat(description.trim(), "</a></h3><p class=\"project-description\">").concat(description.trim(), "</p></div> ") : '';
             }).join('');
         if (elements.educationText)
             elements.educationText.textContent = data.education;
@@ -112,5 +113,28 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Updated Resume:', updatedResume);
         saveBtn.style.display = 'none';
         editBtn.style.display = 'inline';
+    });
+    // Shareable URL handling
+    var shareableLink = document.getElementById('shareable-link');
+    var username = (_a = document.getElementById('profileName')) === null || _a === void 0 ? void 0 : _a.textContent;
+    var shareableURL = "".concat(window.location.origin, "?username=").concat(encodeURIComponent(username !== null && username !== void 0 ? username : ''));
+    // Setting the href and text content for the anchor tag
+    shareableLink.href = shareableURL;
+    // shareableLink.textContent = shareableURL;
+    // Function to copy the link to clipboard when button is clicked
+    var copyButton = document.getElementById('copy-link');
+    copyButton === null || copyButton === void 0 ? void 0 : copyButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Button click par default behavior rokna
+        // Link ko clipboard me copy karna
+        navigator.clipboard.writeText(shareableURL).then(function () {
+            alert('Link copied to clipboard: ' + shareableURL);
+        }).catch(function (err) {
+            console.error('Failed to copy: ', err);
+        });
+    });
+    // Handle PDF download
+    var downloadpdf = document.getElementById('download-pdf');
+    downloadpdf === null || downloadpdf === void 0 ? void 0 : downloadpdf.addEventListener('click', function () {
+        window.print();
     });
 });

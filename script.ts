@@ -1,3 +1,17 @@
+// Define an interface for the resume data
+interface ResumeData {
+
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+    summary: string;
+    skills: string;
+    experience: string;
+    projects: string;
+    education: string;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Toggle form visibility
     const toggleForm = () => {
@@ -17,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         const formData = new FormData(resumeForm);
         const resumeData: ResumeData = {
+           
             name: formData.get('name') as string,
             email: formData.get('email') as string,
             phone: formData.get('phone') as string,
@@ -26,8 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
             experience: formData.get('experience') as string,
             projects: formData.get('projects') as string,
             education: formData.get('education') as string
+
         };
 
+      
         generateResume(resumeData);
         toggleForm();
     });
@@ -50,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Generate and display the resume
     function generateResume(data: ResumeData): void {
         const elements = {
+          
             profileName: document.getElementById('profileName') as HTMLHeadingElement,
             contactAddress: document.getElementById('contactAddress') as HTMLHeadingElement,
             contactPhone: document.getElementById('contactPhone') as HTMLHeadingElement,
@@ -70,9 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (elements.skillsList) elements.skillsList.innerHTML = data.skills.split(',').map(skill => `<li>${skill.trim()}</li>`).join('');
         if (elements.projectsList) elements.projectsList.innerHTML = data.projects.split('\n').map(project => {
             const [link, description] = project.split('|');
-            return link && description ? `<div class="project"><h3 class="project-title"><a href="${link.trim()}" target="_blank">${description.trim()}</a></h3><p class="project-description">${description.trim()}</p></div>` : '';
+            return link && description ? `<div class="project"><h3 class="project-title"><a href="${link.trim()}" target="_blank">${description.trim()}</a></h3><p class="project-description">${description.trim()}</p></div> `: '';
         }).join('');
         if (elements.educationText) elements.educationText.textContent = data.education;
+  
     }
 
     // Edit and save functionality
@@ -91,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('#skills-list, #projects-list').forEach(el => (el as HTMLElement).setAttribute('contenteditable', 'false'));
 
         const updatedResume: ResumeData = {
+           
             name: (document.getElementById('profileName') as HTMLHeadingElement)?.textContent?.trim() || '',
             email: (document.getElementById('contactEmail') as HTMLHeadingElement)?.textContent?.trim() || '',
             phone: (document.getElementById('contactPhone') as HTMLHeadingElement)?.textContent?.trim() || '',
@@ -111,18 +131,37 @@ document.addEventListener('DOMContentLoaded', () => {
         saveBtn.style.display = 'none';
         editBtn.style.display = 'inline';
     });
+
+
+        // Shareable URL handling
+        const shareableLink = document.getElementById('shareable-link') as HTMLAnchorElement;
+        const username = document.getElementById('profileName')?.textContent
+    
+        
+        const shareableURL = `${window.location.origin}?username=${encodeURIComponent(username ?? '')}`;
+    
+        // Setting the href and text content for the anchor tag
+        shareableLink.href = shareableURL;
+        // shareableLink.textContent = shareableURL;
+    
+        // Function to copy the link to clipboard when button is clicked
+    const copyButton = document.getElementById('copy-link');
+    
+    copyButton?.addEventListener('click', (event) => {
+        event.preventDefault(); // Button click par default behavior rokna
+        
+        // Link ko clipboard me copy karna
+        navigator.clipboard.writeText(shareableURL).then(() => {
+            alert('Link copied to clipboard: ' + shareableURL);
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    });
+ 
+        // Handle PDF download
+        const downloadpdf = document.getElementById('download-pdf');
+      
+        downloadpdf?.addEventListener('click', () => {
+            window.print();
+        });
 });
-
-
-// Define an interface for the resume data
-interface ResumeData {
-    name: string;
-    email: string;
-    phone: string;
-    address: string;
-    summary: string;
-    skills: string;
-    experience: string;
-    projects: string;
-    education: string;
-}
